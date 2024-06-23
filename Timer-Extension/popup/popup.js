@@ -15,6 +15,6 @@ chrome.storage.sync.get(["name"], (syncResult) => {
     }, 1000);
 })
 
-chrome.action.setBadgeText({
-    text: "TIME"
-}, () => { console.log("Finished setting badge!") });
+// chrome.action.setBadgeText({
+//     text: "TIME"
+// }, () => { console.log("Finished setting badge!") });
