@@ -1,6 +1,6 @@
 body {
-    width: 300px;
-    height: 300px;
+    width: 330px;
+    height: 330px;
 }
 
 h1 {
@@ -13,7 +13,7 @@ p {
 }
 
 .btn-holder {
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
     gap: 0.3rem;
