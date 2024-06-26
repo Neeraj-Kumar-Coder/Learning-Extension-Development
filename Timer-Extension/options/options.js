@@ -5,7 +5,11 @@ const saveBtn = document.getElementById("save");
 saveBtn.addEventListener("click", (event) => {
     const name = nameInput.value;
     const interval = intervalInput.value;
-    chrome.storage.sync.set({ name, interval }, () => { console.log(`Saved data is ${{ name, interval }}`) })
+    const data = { name, interval };
+    chrome.storage.sync.set(data, () => {
+        console.log(`Saved data is ${data}`);
+    });
+    alert(`Saved ${JSON.stringify(data)}`);
 });
 
 chrome.storage.sync.get(["name", "interval"], (result) => {

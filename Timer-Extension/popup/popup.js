@@ -7,8 +7,7 @@ const resetBtn = document.getElementById("resetBtn");
 
 chrome.storage.sync.get(["name"], (syncResult) => {
     const name = syncResult.name ?? "Stranger";
-
-    setInterval(() => {
+    const updater = () => {
         chrome.storage.local.get(["timer"], (localResult) => {
             const timer = localResult.timer ?? 0;
 
@@ -17,7 +16,10 @@ chrome.storage.sync.get(["name"], (syncResult) => {
             timerElement.textContent = `The timer is at: ${timer} seconds`;
             btnHolder.style.display = "flex";
         });
-    }, 1000);
+    };
+
+    updater();
+    setInterval(updater, 1000);
 });
 
 startBtn.addEventListener("click", () => {
