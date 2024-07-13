@@ -1,7 +1,36 @@
+const timer = document.getElementById("timer");
 const startBtn = document.getElementById("start-btn");
 const resetBtn = document.getElementById("reset-btn");
 const addTaskBtn = document.getElementById("add-task-btn");
 const tasksContainer = document.getElementById("tasks-container");
+
+startBtn.addEventListener("click", () => {
+    chrome.storage.local.set({
+        isRunning: true,
+    });
+});
+
+resetBtn.addEventListener("click", () => {
+    chrome.storage.local.set({
+        isRunning: false,
+        timer: 1500
+    });
+});
+
+// Auto updater
+(() => {
+    const updater = () => {
+        chrome.storage.local.get(["timer", "isRunning"], (localResult) => {
+            const minutes = Math.floor(localResult.timer / 60);
+            const seconds = localResult.timer % 60;
+
+            timer.textContent = `${minutes}:${seconds ? seconds : "00"}`;
+        })
+    }
+
+    updater();
+    setInterval(updater, 1000);
+})()
 
 let tasks = [];
 chrome.storage.sync.get(["tasks"], (syncResult) => {

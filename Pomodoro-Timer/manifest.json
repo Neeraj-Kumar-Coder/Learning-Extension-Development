@@ -21,5 +21,8 @@
         "default_title": "Pomodoro Timer",
         "default_popup": "./popup/popup.html"
     },
-    "permissions": ["storage"]
+    "permissions": ["storage", "alarms"],
+    "background": {
+        "service_worker": "./background/service_worker.js"
+    }
 }
