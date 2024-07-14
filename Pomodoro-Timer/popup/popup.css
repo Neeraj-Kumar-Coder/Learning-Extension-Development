@@ -5,11 +5,19 @@
     box-sizing: border-box;
 }
 
+::-webkit-scrollbar {
+    display: none;
+}
+
 body {
-    width: 300px;
-    height: 400px;
+    min-width: 300px;
+    min-height: 400px;
     background-color: black;
     color: white;
+    border: 3px solid white;
+    border-radius: 0.5rem;
+    overflow-y: scroll;
+    outline: none;
 }
 
 .text-center {
@@ -29,6 +37,7 @@ body {
 }
 
 .task-text {
+    margin-left: 0.3rem;
     padding: 0.3rem 0.6rem;
     font-size: 0.8rem;
 }
