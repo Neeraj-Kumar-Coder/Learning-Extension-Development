@@ -8,17 +8,21 @@
     </head>
     <body>
         <h1>Pomodoro Extension Options</h1>
-        <label class="input-label" for="focus-time"
-            >Focus time (in minutes)</label
-        >
-        <input
-            type="number"
-            name="focusTime"
-            id="focus-time"
-            min="1"
-            max="60"
-        />
-        <button id="saveBtn">Save</button>
+        <div class="option-container">
+            <div class="option">
+                <label class="input-label" for="focus-time"
+                    >Focus time (in minutes)</label
+                >
+                <input
+                    type="number"
+                    name="focusTime"
+                    id="focus-time"
+                    min="1"
+                    max="60"
+                />
+                <button id="saveBtn">Save</button>
+            </div>
+        </div>
         <script src="./options.js"></script>
     </body>
 </html>
