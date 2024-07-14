@@ -23,6 +23,11 @@ chrome.alarms.onAlarm.addListener((alarm) => {
                     });
                 }
                 else {
+                    this.registration.showNotification("Pomodoro Alert", {
+                        body: "25 minutes focus time is now complete!",
+                        icon: "../icons/icon.png"
+                    });
+
                     chrome.storage.local.set({
                         timer: 1500,
                         isRunning: false

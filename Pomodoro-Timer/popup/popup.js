@@ -4,6 +4,10 @@ const resetBtn = document.getElementById("reset-btn");
 const addTaskBtn = document.getElementById("add-task-btn");
 const tasksContainer = document.getElementById("tasks-container");
 
+const toTwoDigit = (number) => {
+    return `${number}`.padStart(2, "0");
+}
+
 startBtn.addEventListener("click", () => {
     chrome.storage.local.get(["isRunning"], (localResult) => {
         chrome.storage.local.set({
@@ -30,7 +34,7 @@ resetBtn.addEventListener("click", () => {
             const minutes = Math.floor(localResult.timer / 60);
             const seconds = localResult.timer % 60;
 
-            timer.textContent = `${minutes}:${seconds ? seconds : "00"}`;
+            timer.textContent = `${toTwoDigit(minutes)}:${toTwoDigit(seconds)}`;
         })
     }
 
