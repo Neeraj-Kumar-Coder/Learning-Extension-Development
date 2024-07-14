@@ -5,8 +5,12 @@ const addTaskBtn = document.getElementById("add-task-btn");
 const tasksContainer = document.getElementById("tasks-container");
 
 startBtn.addEventListener("click", () => {
-    chrome.storage.local.set({
-        isRunning: true,
+    chrome.storage.local.get(["isRunning"], (localResult) => {
+        chrome.storage.local.set({
+            isRunning: !localResult.isRunning,
+        }, () => {
+            startBtn.textContent = !localResult.isRunning ? "Pause" : "Start";
+        });
     });
 });
 
@@ -14,6 +18,8 @@ resetBtn.addEventListener("click", () => {
     chrome.storage.local.set({
         isRunning: false,
         timer: 1500
+    }, () => {
+        startBtn.textContent = "Start";
     });
 });
 
