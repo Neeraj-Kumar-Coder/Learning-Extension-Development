@@ -24,5 +24,6 @@
     "permissions": ["storage", "alarms", "notifications"],
     "background": {
         "service_worker": "./background/service_worker.js"
-    }
+    },
+    "options_page": "./options/options.html"
 }

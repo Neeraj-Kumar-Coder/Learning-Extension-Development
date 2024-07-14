@@ -1,8 +1,9 @@
 // This will set all the undefined variables in the storage
-chrome.storage.local.get(["timer", "isRunning"], (localResult) => {
+chrome.storage.local.get(["timer", "isRunning", "focusTime"], (localResult) => {
     chrome.storage.local.set({
-        timer: localResult.timer ?? 1500,
-        isRunning: localResult.isRunning ?? false
+        timer: "timer" in localResult ? localResult.timer : (25 * 60),
+        isRunning: "isRunning" in localResult ? localResult.isRunning : false,
+        focusTime: "focusTime" in localResult ? localResult.focusTime : 25
     });
 });
 
@@ -12,7 +13,7 @@ chrome.alarms.create("pomodoro-reverse-timer", {
 
 chrome.alarms.onAlarm.addListener((alarm) => {
     if (alarm.name === "pomodoro-reverse-timer") {
-        chrome.storage.local.get(["timer", "isRunning"], (localResult) => {
+        chrome.storage.local.get(["timer", "isRunning", "focusTime"], (localResult) => {
             if (localResult.isRunning) {
                 let currentTimeLeft = localResult.timer;
                 currentTimeLeft--;
@@ -24,12 +25,12 @@ chrome.alarms.onAlarm.addListener((alarm) => {
                 }
                 else {
                     this.registration.showNotification("Pomodoro Alert", {
-                        body: "25 minutes focus time is now complete!",
+                        body: `${localResult.focusTime} minutes focus time is now complete!`,
                         icon: "../icons/icon.png"
                     });
 
                     chrome.storage.local.set({
-                        timer: 1500,
+                        timer: localResult.focusTime * 60,
                         isRunning: false
                     });
                 }

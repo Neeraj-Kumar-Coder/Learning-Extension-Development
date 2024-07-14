@@ -19,12 +19,14 @@ startBtn.addEventListener("click", () => {
 });
 
 resetBtn.addEventListener("click", () => {
-    chrome.storage.local.set({
-        isRunning: false,
-        timer: 1500
-    }, () => {
-        startBtn.textContent = "Start";
-    });
+    chrome.storage.local.get(["focusTime"], (localResult) => {
+        chrome.storage.local.set({
+            isRunning: false,
+            timer: localResult.focusTime * 60
+        }, () => {
+            startBtn.textContent = "Start";
+        });
+    })
 });
 
 // Auto updater
@@ -35,6 +37,7 @@ resetBtn.addEventListener("click", () => {
             const seconds = localResult.timer % 60;
 
             timer.textContent = `${toTwoDigit(minutes)}:${toTwoDigit(seconds)}`;
+            startBtn.textContent = localResult.isRunning ? "Pause" : "Start";
         })
     }
 
