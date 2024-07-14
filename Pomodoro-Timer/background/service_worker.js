@@ -25,7 +25,7 @@ chrome.alarms.onAlarm.addListener((alarm) => {
                 }
                 else {
                     this.registration.showNotification("Pomodoro Alert", {
-                        body: `${localResult.focusTime} minutes focus time is now complete!`,
+                        body: `${localResult.focusTime} minute${localResult.focusTime > 1 ? "s" : ""} focus time is now complete!`,
                         icon: "../icons/icon.png"
                     });
 
