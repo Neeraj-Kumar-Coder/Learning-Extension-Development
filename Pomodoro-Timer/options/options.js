@@ -12,6 +12,7 @@ saveBtn.addEventListener("click", () => {
             timer: focusTimeInput.value * 60,
             isRunning: false
         });
+        alert("Saved successfully!");
     }
     else {
         alert("Please input a value between 1 and 60 (inclusive both)!");
