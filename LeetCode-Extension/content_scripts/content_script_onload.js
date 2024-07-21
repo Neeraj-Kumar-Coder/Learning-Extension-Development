@@ -12,9 +12,13 @@ const init = () => {
             p.nextElementSibling.style.display = syncResult.hideConstraints ? "none" : "block";
         });
 
-        const button = document.querySelector('button[data-cy="submit-code-btn"]');
-        button.style.display = syncResult.hideSubmitButton ? "none" : "block";
-    })
+        const buttonOldUI = document.querySelector('button[data-cy="submit-code-btn"]');
+        if (buttonOldUI)
+            buttonOldUI.style.display = syncResult.hideSubmitButton ? "none" : "block";
+        const buttonNewUI = document.querySelector('button[data-e2e-locator="console-submit-button"]');
+        if (buttonNewUI)
+            buttonNewUI.style.display = syncResult.hideSubmitButton ? "none" : "block";
+    });
 }
 
 const observer = new MutationObserver(init);

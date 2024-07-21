@@ -16,8 +16,17 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
         });
     }
     else if (msg.message === "HIDE_SUBMIT_BUTTON") {
-        const button = document.querySelector('button[data-cy="submit-code-btn"]');
-        button.style.display = msg.enabled ? "none" : "block";
+        const buttonOldUI = document.querySelector('button[data-cy="submit-code-btn"]');
+        if (buttonOldUI)
+            buttonOldUI.style.display = msg.enabled ? "none" : "block";
+
+        const buttonNewUI = document.querySelector('button[data-e2e-locator="console-submit-button"]');
+        if (buttonNewUI)
+            buttonNewUI.style.display = msg.enabled ? "none" : "block";
+        console.log(buttonNewUI);
     }
+
     sendResponse();
+
+    return true;
 });
