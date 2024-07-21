@@ -1,8 +1,11 @@
 chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
     if (msg.message === "HIDE_DIFFICULTY") {
         if (msg.enabled) {
-            const divs = Array.from(document.getElementsByTagName("div")).filter((element) => element.hasAttribute("diff"));
-            divs.forEach((div) => div.style.display = "none");
+            const divsNormalUI = Array.from(document.getElementsByTagName("div")).filter((element) => element.hasAttribute("diff"));
+            divsNormalUI.forEach((div) => div.style.display = "none");
+
+            const divsNewUI = Array.from(document.querySelectorAll('div')).filter(div => div.className.match(/text-difficulty-\w+/));
+            divsNewUI.forEach((div) => div.style.display = "none");
         }
         else {
             const divs = Array.from(document.getElementsByTagName("div")).filter((element) => element.hasAttribute("diff"));
