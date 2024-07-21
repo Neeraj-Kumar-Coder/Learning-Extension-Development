@@ -21,10 +21,19 @@
         "default_title": "Leetcode Extension Pack",
         "default_popup": "./popup/popup.html"
     },
+    "permissions": ["activeTab", "tabs", "storage"],
+    "background": {
+        "service_worker": "./service_worker/service_worker.js"
+    },
     "content_scripts": [
         {
             "matches": ["<all_urls>"],
             "js": ["./content_scripts/content_script.js"]
+        },
+        {
+            "matches": ["<all_urls>"],
+            "js": ["./content_scripts/content_script_onload.js"],
+            "run_at": "document_end"
         }
     ]
 }
