@@ -3,6 +3,7 @@ chrome.runtime.onInstalled.addListener((details) => {
         chrome.storage.sync.set({
             "hideDifficultyLevel": false,
             "hideConstraints": false,
+            "hideAcceptanceRate": false,
             "hideSubmitButton": false
         });
     }
